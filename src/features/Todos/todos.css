@@ -1,0 +1,18 @@
+.todos {
+  background-color: aliceblue;
+  display: flex;
+  border: 1px solid;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 9px;
+  align-items: center;
+}
+.checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
