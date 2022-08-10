@@ -5,15 +5,15 @@ import useGetTodos from "./hooks/getTodos.hooks";
 // import ReactPaginate from "react-paginate";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import Todos from "./features/Todos/todos";
 
 import { Todo } from "./types";
 import Pagination from "./features/pagination/pagination1";
+import { Link } from "react-router-dom";
 
 function App() {
   const { data: todos } = useGetTodos();
-
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(10);
   const [checkBox, setCheckBox] = useState({
@@ -94,6 +94,11 @@ function App() {
           placeholder="Search"
           onChange={(e) => setSearchInput(e.target.value)}
         />
+        <Button className="button">
+          <Link className="link" to="/todos/new">
+            Add a Todo
+          </Link>
+        </Button>
         {/* <select>
           <option>Completed</option>
           <option>Not Completed</option>

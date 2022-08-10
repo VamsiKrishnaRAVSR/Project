@@ -6,6 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GetTodo from "./components/getTodo";
+import CreateTodo from "./components/createTodo";
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
@@ -16,9 +17,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          
           <Route path="/" element={<App />} />
           <Route path={"/todos/:id"} element={<GetTodo />} />
+          <Route path={"/todos/new"} element={<CreateTodo />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

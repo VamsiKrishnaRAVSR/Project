@@ -6,19 +6,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 .topBar {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: space-between;
   margin: 0px;
   padding: 0px;
   margin-top: 10px;
 }
-.input{
-  
+.input {
+  outline: none;
+}
+.button {
+  color: blue;
+}
+
+.link {
+  color: #aaa;
+  text-decoration: none;
 }

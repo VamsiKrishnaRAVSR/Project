@@ -4,7 +4,6 @@ import { Todo } from "../../types";
 import "./todos.css";
 
 const Todos = ({ todos }: { todos: Todo[] | undefined }) => {
-  console.log(todos);
 
   return (
     <ListGroup className="ListGroup mb-4">

@@ -1,0 +1,37 @@
+.add-todo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.form {
+  border: 1px solid #afafaf;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  /* align-items: center; */
+
+  box-shadow: 0px 3px 3px 3px #afafaf;
+  /* display: none; */
+}
+.formik-item {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+.formik-date {
+  width: 300px;
+  padding: 5px;
+}
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+.formik-checkBox {
+  display: inline;
+  margin-left: 5px;
+}

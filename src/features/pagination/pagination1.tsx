@@ -42,6 +42,8 @@ const Pagination = (props: PaginationProps) => {
   const [pageNumber, setPageNumber] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
+
+
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.match(/^[0-9]*$/i)) {
       setErrorMsg("");
@@ -98,6 +100,7 @@ const Pagination = (props: PaginationProps) => {
           onClick={() => paginate((currentPageNo as number) + 1)}
         >{`>`}</Button>
       </div>
+
       {currentPageNo > 0 && currentPageNo <= pageCount ? (
         <p>{currentPageString}</p>
       ) : totalLength !== 0 ? (

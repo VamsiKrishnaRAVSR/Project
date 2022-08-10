@@ -1,10 +1,14 @@
 export interface Todo {
-  userId: Number;
-  id: Number;
-  title: String;
-  completed: Boolean;
-}
+    id: number,
+    completed: boolean,
+    user_id: number,
+    description: string,
+    completed_on: string,
+    estimated_date: string,
+    title: string,
+  };
 
 export interface TodoList {
   data: Todo[];
 }
+

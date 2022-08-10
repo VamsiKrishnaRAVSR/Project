@@ -1,4 +1,4 @@
 export const API_ROUTES = {
-  GET_ALL_TODOS: "https://jsonplaceholder.typicode.com/todos/",
-  GET_TODO: "https://jsonplaceholder.typicode.com/todos/:id",
+  GET_ALL_TODOS: "http://localhost:4000/Todos",
+  GET_TODO: "http://localhost:4000/Todos/:id",
 };
