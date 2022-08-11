@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { Button } from "react-bootstrap";
 import { Todo } from "../../types";
 
-const TodoList = (props: { initialValues: Todo; onSubmit: any; }) => {
+const TodoList = (props: { initialValues: Todo; onSubmit: any }) => {
   const { initialValues, onSubmit } = props;
   const validationSchema = yup.object({
     description: yup.string().required(),

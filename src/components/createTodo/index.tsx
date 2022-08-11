@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./index.css";
 
 import TodoList from "../commonFormikForm";
@@ -9,10 +9,10 @@ import { Todo } from "../../types";
 
 const CreateTodo = () => {
   const { data } = useGetTodos();
-  let updatedId = 0;
-  if (data) {
-    updatedId = data?.length;
-  }
+
+  // array is undefined and accessing length breaks ui. (JS error breaks ) tsx error doesn't break
+  const updatedId = useMemo(() => data!.length + 1, [data]);
+  console.log(data?.length);
 
   const navigate = useNavigate();
   const { mutate, isError, error } = usePostTodo();
