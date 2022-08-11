@@ -6,15 +6,17 @@ import { useParams } from "react-router";
 import useGetTodo from "../../hooks/getTodo.hooks";
 import { Button, Modal, Table } from "react-bootstrap";
 import { Todo } from "../../types";
-import axios from "axios";
+import useGetPatchTodo from "../../hooks/getPatchTodo";
 
 const GetTodo = () => {
   const { id } = useParams();
   const { data } = useGetTodo(id as string);
   const navigate = useNavigate();
+  const { mutate, isError, error } = useGetPatchTodo();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const initialValues: Todo = {
     id: data?.id,
     completed: data?.completed,
@@ -23,6 +25,7 @@ const GetTodo = () => {
     completed_on: data?.completed_on,
     estimated_date: data?.estimated_date,
     title: data?.title,
+    created_on: new Date().toISOString().slice(0, 10),
   };
 
   const validationSchema = yup.object({
@@ -36,16 +39,13 @@ const GetTodo = () => {
   });
 
   const onSubmit = (values: Todo) => {
-    // console.log(values);
+    mutate(values);
+    if (isError) {
+      alert("Something went wrong " + error);
+    } else {
+      navigate("/");
+    }
   };
-
-  // id: number,
-  // completed: boolean,
-  // user_id: number,
-  // description: string,
-  // completed_on: string,
-  // estimated_date: string,
-  // title: string,
 
   return (
     <div className="getTodo-container">
@@ -55,6 +55,7 @@ const GetTodo = () => {
         </Modal.Header>
         <Modal.Body>
           <Formik
+            enableReinitialize={true}
             initialValues={initialValues}
             onSubmit={onSubmit}
             validationSchema={validationSchema}

@@ -28,11 +28,12 @@ function App() {
   const paginate = (number: string | number) => {
     setCurrentPage(parseInt(number as string));
   };
+  console.log(todos);
 
   const filterBySearchInput = useMemo(
     () =>
       todos?.filter((todo: Todo) =>
-        todo.title.toLowerCase().includes(searchInput.toLowerCase())
+        todo.title?.toLowerCase().includes(searchInput.toLowerCase())
       ),
     [searchInput, todos]
   );

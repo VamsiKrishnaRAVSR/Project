@@ -4,15 +4,19 @@ import { useNavigate } from "react-router";
 
 import * as yup from "yup";
 import { Todo } from "../../types";
-import axios from "axios";
 import { Button } from "react-bootstrap";
 import useGetTodos from "../../hooks/getTodos.hooks";
+import usePostTodo from "../../hooks/getPostTodo";
 
 const TodoList = () => {
   const { data } = useGetTodos();
-  const updatedId: number | undefined = data?.length;
+  let updatedId = 0;
+  if (data) {
+    updatedId = data?.length;
+  }
 
   const navigate = useNavigate();
+  const { mutate, isError, error } = usePostTodo();
 
   const initialValues: Todo = {
     id: updatedId + 1,
@@ -22,22 +26,19 @@ const TodoList = () => {
     completed_on: "",
     estimated_date: "",
     title: "",
+    created_on: new Date().toISOString().slice(0, 10),
   };
   const validationSchema = yup.object({
     description: yup.string().required(),
-    id: yup.number(),
     completed: yup.boolean().required(),
-    user_id: yup.number().required(),
     completed_on: yup.date().required(),
     estimated_date: yup.date().required(),
     title: yup.string().required(),
   });
 
   const onSubmit = (values: Todo) => {
-    axios.post("http://localhost:4000/Todos/", values);
-    console.log(values.estimated_date);
-
-    navigate("/");
+    mutate(values);
+    isError ? alert("Something went wrong " + error) : navigate("/");
   };
 
   return (
@@ -94,9 +95,7 @@ const TodoList = () => {
           <ErrorMessage component="p" name="title" />
         </div>
         <div className="btn-container">
-          <Button onClick={onSubmit} type="submit">
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </div>
       </Form>
     </Formik>
