@@ -359,6 +359,16 @@
       "estimated_date": "2022-08-19",
       "title": "Drink water hahaha",
       "created_on": "2022-08-11"
+    },
+    {
+      "id": 37,
+      "completed": false,
+      "user_id": 3,
+      "description": "Sleep before 1 on Weekdays and weekends",
+      "completed_on": "2000-10-01",
+      "estimated_date": "2021-10-01",
+      "title": "Habits",
+      "created_on": "2022-08-11"
     }
   ]
 }

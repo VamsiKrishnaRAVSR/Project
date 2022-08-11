@@ -2,12 +2,9 @@ import React, { useMemo, useState } from "react";
 
 import "./App.css";
 import useGetTodos from "./hooks/getTodos.hooks";
-// import ReactPaginate from "react-paginate";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
 import { Button, Container } from "react-bootstrap";
 import Todos from "./features/Todos/todos";
-
 import { Todo } from "./types";
 import Pagination from "./features/pagination/pagination1";
 import { Link } from "react-router-dom";

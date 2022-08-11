@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import GetTodo from "./components/getTodo";
+import GetTodo from "./components/getIndividualTodo";
 import CreateTodo from "./components/createTodo";
 const queryClient = new QueryClient();
 
