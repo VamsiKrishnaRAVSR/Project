@@ -11,22 +11,36 @@ const CreateTodo = () => {
   const { data } = useGetTodos();
 
   // array is undefined and accessing length breaks ui. (JS error breaks ) tsx error doesn't break
-  const updatedId = useMemo(() => data!.length + 1, [data]);
-  console.log(data?.length);
+  const updatedId = useMemo(() => Number.isInteger(data?.length), [data]);
 
   const navigate = useNavigate();
   const { mutate, isError, error } = usePostTodo();
 
-  const initialValues: Todo = {
-    id: updatedId + 1,
-    completed: false,
-    user_id: 3,
-    description: "",
-    completed_on: "",
-    estimated_date: "",
-    title: "",
-    created_on: new Date().toISOString().slice(0, 10),
-  };
+  // const initialValues: Todo = {
+  //   id: updatedId + 1,
+  //   completed: false,
+  //   user_id: 3,
+  //   description: "",
+  //   completed_on: "",
+  //   estimated_date: "",
+  //   title: "",
+  //   created_on: new Date().toISOString().slice(0, 10),
+  // };
+
+  const initialValues: Todo = useMemo(
+    () => ({
+      id: Number.isInteger(updatedId) ? Number(updatedId) + 1 : 0,
+      completed: false,
+      user_id: 3,
+      description: "",
+      completed_on: "",
+      estimated_date: "",
+      title: "",
+      created_on: new Date().toISOString().slice(0, 10),
+    }),
+    [updatedId]
+  );
+  console.log(initialValues);
 
   const onSubmit = (values: Todo) => {
     mutate(values);
