@@ -12,10 +12,10 @@ const GetTodo = () => {
   const { data } = useGetTodo(id as string);
   const navigate = useNavigate();
   const { mutate, isError, error } = useGetPatchTodo();
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const initialValues: Todo = {
     id: data?.id,
     completed: data?.completed,
@@ -32,7 +32,7 @@ const GetTodo = () => {
     if (isError) {
       alert("Something went wrong " + error);
     } else {
-      navigate("/");
+      setShow(!show);
     }
   };
 
