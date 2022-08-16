@@ -1,10 +1,10 @@
-import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { queryConstants } from "../constants/queryConstants";
 import { getTodo } from "../services/todos.services";
 import { Todo } from "../types";
 
 const useGetTodo = (props: string) => {
-  const queryClient: QueryClient = useQueryClient();
+  const queryClient: any = useQueryClient();
 
   return useQuery<Todo>([queryConstants.GET_TODO], () => getTodo(props), {
     onError: (err) => {

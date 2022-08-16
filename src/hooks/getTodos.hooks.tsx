@@ -12,6 +12,7 @@ const useGetTodos = () /*: { data: Todo[] } */ => {
     onError: (err) => {
       console.log(err);
     },
+    
   });
 };
 
