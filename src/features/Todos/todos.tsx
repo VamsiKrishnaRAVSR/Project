@@ -4,7 +4,6 @@ import { Todo } from "../../types";
 import "./todos.css";
 
 const Todos = ({ todos }: { todos: Todo[] | undefined }) => {
-
   return (
     <ListGroup className="ListGroup mb-4">
       {todos?.map((ele: any) => (
@@ -15,7 +14,7 @@ const Todos = ({ todos }: { todos: Todo[] | undefined }) => {
             disabled
             checked={ele?.completed}
           />
-          
+
           <Link className="link" to={`/todos/${ele.id}`}>
             {ele?.title}
           </Link>

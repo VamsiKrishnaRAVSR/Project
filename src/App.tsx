@@ -10,7 +10,7 @@ import Pagination from "./features/pagination/pagination1";
 import { Link } from "react-router-dom";
 
 function App() {
-  const { data: todos } = useGetTodos();
+  const { data: todos, isLoading } = useGetTodos();
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(10);
   const [checkBox, setCheckBox] = useState({
@@ -25,7 +25,6 @@ function App() {
   const paginate = (number: string | number) => {
     setCurrentPage(parseInt(number as string));
   };
-  console.log(todos);
 
   const filterBySearchInput = useMemo(
     () =>
@@ -47,6 +46,9 @@ function App() {
   }, [checkBox, filterBySearchInput]);
 
   const currentTodos = updatedCheckedList?.slice(firstTodoIndex, lastTodoIndex);
+  if (isLoading) {
+    return <h1>...Loading</h1>;
+  }
   return (
     <Container>
       <div className="topBar">

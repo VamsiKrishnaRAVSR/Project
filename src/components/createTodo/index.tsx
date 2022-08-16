@@ -16,17 +16,6 @@ const CreateTodo = () => {
   const navigate = useNavigate();
   const { mutate, isError, error } = usePostTodo();
 
-  // const initialValues: Todo = {
-  //   id: updatedId + 1,
-  //   completed: false,
-  //   user_id: 3,
-  //   description: "",
-  //   completed_on: "",
-  //   estimated_date: "",
-  //   title: "",
-  //   created_on: new Date().toISOString().slice(0, 10),
-  // };
-
   const initialValues: Todo = useMemo(
     () => ({
       id: Number.isInteger(updatedId) ? Number(updatedId) + 1 : 0,

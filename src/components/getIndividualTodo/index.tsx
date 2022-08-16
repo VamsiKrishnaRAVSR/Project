@@ -9,7 +9,7 @@ import TodoList from "../commonFormikForm";
 
 const GetTodo = () => {
   const { id } = useParams();
-  const { data } = useGetTodo(id as string);
+  const { data, isLoading } = useGetTodo(id);
   const navigate = useNavigate();
   const { mutate, isError, error } = useGetPatchTodo();
   const [show, setShow] = useState(false);
@@ -35,7 +35,9 @@ const GetTodo = () => {
       navigate("/");
     }
   };
-
+  if (isLoading) {
+    return <h1>...Loading</h1>;
+  }
   return (
     <div className="getTodo-container">
       <Modal show={show} onHide={handleClose}>
