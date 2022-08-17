@@ -12,7 +12,7 @@ const GetTodo = () => {
   const { id } = useParams();
   const { data } = useGetTodo(id as string);
   const navigate = useNavigate();
-  const { mutate, isError, error } = useGetPatchTodo();
+  const { mutate, isError, error } = useGetPatchTodo(id as string);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -28,12 +28,10 @@ const GetTodo = () => {
     created_on: new Date().toISOString().slice(0, 10),
   };
 
-  const { mutate: diff, isSuccess } = useGetDeleteTodo();
-  if (isSuccess) {
-    navigate("/");
-  }
+  const { mutate: diff } = useGetDeleteTodo();
+
   const deleteTodo = () => {
-    diff(id);
+    diff(id as string);
   };
 
   const onSubmit = (values: Todo) => {

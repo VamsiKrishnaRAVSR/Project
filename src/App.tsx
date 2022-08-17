@@ -17,6 +17,7 @@ function App() {
     completed: false,
     pending: false,
   });
+
   // const [isCompleted, setIsCompleted] = useState(false);
   // const [isPending, setIsPending] = useState(false);
   const [searchInput, setSearchInput] = useState("");

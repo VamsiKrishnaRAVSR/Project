@@ -29,7 +29,10 @@ export const postTodo = (props: Todo) => {
 export const patchTodo = (props: Todo) => {
   const id = String(props.id);
   const url = API_ROUTES.PATCH_URL.replace(":id", id);
-  return sleep().then(() => axios.patch(url, props));
+  return sleep()
+    .then(() => axios.patch(url, props))
+    .then(() => console.log("patch request Success"))
+    .catch((err) => console.log(err));
 };
 
 export const deleteTodo = (props: string) => {

@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {  useMutation, useQueryClient } from "@tanstack/react-query";
 // import { queryConstants } from "../constants/queryConstants";
 import { postTodo } from "../services/todos.services";
 import { Todo } from "../types";
@@ -10,9 +10,6 @@ const usePostTodo = () => {
     onSuccess: (data) => {
       return queryClient.setQueriesData("ALL_TODOS", (oldData: any) => {
         const p = [...oldData, data.data];
-        // console.log([...oldData]);
-        // console.log(data.data);
-        // console.log(p);
         return p;
       });
     },
