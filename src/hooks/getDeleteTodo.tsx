@@ -9,7 +9,7 @@ import { deleteTodo } from "../services/todos.services";
 import { Todo } from "../types";
 const useGetDeleteTodo = () => {
   const queryClient: QueryClient = useQueryClient();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return useMutation((id: string) => deleteTodo(id), {
     onError: (err) => {
       console.log(err);
@@ -23,6 +23,7 @@ const useGetDeleteTodo = () => {
           (ele: Todo) => ele.id !== parseInt(variables)
         );
         console.log(q);
+        navigate("/");
         return q;
       });
     },

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { queryConstants } from "../constants/queryConstants";
 import { getTodo } from "../services/todos.services";
+// import { Todo } from "../types";
 
 const useGetTodo = (id: string) => {
-  return useQuery([queryConstants.GET_TODO, id], () => getTodo(id), {
-  });
+  return useQuery([queryConstants.GET_TODO, id], () => getTodo(id), {});
 };
 
 // const useGetTodo = (props: string) => {

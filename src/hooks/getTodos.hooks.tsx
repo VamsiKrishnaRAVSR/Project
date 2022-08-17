@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getTodosList } from "../services/todos.services";
 import { queryConstants } from "../constants/queryConstants";
 import { Todo } from "../types";
@@ -8,11 +8,12 @@ import { Todo } from "../types";
 // ): { data: Source | null; isLoading: boolean } => {
 
 const useGetTodos = () /*: { data: Todo[] } */ => {
+  const queryClient = useQueryClient();
   return useQuery<Todo[]>([queryConstants.ALL_TODOS], () => getTodosList(), {
     onError: (err) => {
       console.log(err);
     },
-    
+    initialData: () => queryClient.getQueryData([queryConstants.ALL_TODOS]),
   });
 };
 

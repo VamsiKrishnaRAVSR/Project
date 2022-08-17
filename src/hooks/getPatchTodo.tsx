@@ -8,8 +8,6 @@ const useGetPatchTodo = (id: string) => {
   return useMutation((props: Todo) => patchTodo(props), {
     // onSuccess: () => queryClient.invalidateQueries(queryConstants.GET_TODO),
     onSuccess: (data, variables) => {
-      console.log(typeof variables.id);
-      console.log(typeof id);
       queryClient.cancelQueries([queryConstants.GET_TODO]);
       // no need to add variables to dep list coz somethings won't change. Be more specific instead of generic
       queryClient.setQueriesData(
