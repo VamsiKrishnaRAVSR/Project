@@ -31,16 +31,6 @@
       "title": "Sample"
     },
     {
-      "id": 18,
-      "completed": false,
-      "user_id": 18,
-      "description": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
-      "completed_on": "2022-03-09",
-      "created_on": "2022-01-27",
-      "estimated_date": "2022-05-30",
-      "title": "Donec ut mauris eget massa tempor convallis."
-    },
-    {
       "id": 19,
       "completed": true,
       "user_id": 19,
@@ -91,16 +81,6 @@
       "title": "Cras non velit nec nisi vulputate nonummy."
     },
     {
-      "id": 28,
-      "completed": false,
-      "user_id": 28,
-      "description": "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-      "completed_on": "2022-06-18",
-      "created_on": "2022-04-25",
-      "estimated_date": "2021-11-07",
-      "title": "Curabitur convallis."
-    },
-    {
       "id": 29,
       "completed": false,
       "user_id": 29,
@@ -109,16 +89,6 @@
       "created_on": "2022-08-16",
       "estimated_date": "2021-10-07",
       "title": "Name"
-    },
-    {
-      "id": 30,
-      "completed": true,
-      "user_id": 30,
-      "description": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-      "completed_on": "2021-11-03",
-      "created_on": "2022-02-10",
-      "estimated_date": "2022-06-04",
-      "title": "Aliquam sit amet diam in magna bibendum imperdiet."
     },
     {
       "id": 32,

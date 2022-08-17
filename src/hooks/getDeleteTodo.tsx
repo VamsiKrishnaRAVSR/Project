@@ -23,7 +23,12 @@ const useGetDeleteTodo = () => {
           (ele: Todo) => ele.id !== parseInt(variables)
         );
         console.log(q);
+
         navigate("/");
+        queryClient.cancelQueries([queryConstants.ALL_TODOS], {
+          exact: true,
+        });
+
         return q;
       });
     },
