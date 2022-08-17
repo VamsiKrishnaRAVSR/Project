@@ -10,9 +10,9 @@ const usePostTodo = () => {
     onSuccess: (data) => {
       return queryClient.setQueriesData("ALL_TODOS", (oldData: any) => {
         const p = [...oldData, data.data];
-        console.log([...oldData]);
+        // console.log([...oldData]);
         // console.log(data.data);
-        console.log(p);
+        // console.log(p);
         return p;
       });
     },

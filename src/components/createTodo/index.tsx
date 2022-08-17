@@ -29,7 +29,6 @@ const CreateTodo = () => {
     }),
     [updatedId]
   );
-  console.log(initialValues);
 
   const onSubmit = (values: Todo) => {
     mutate(values);

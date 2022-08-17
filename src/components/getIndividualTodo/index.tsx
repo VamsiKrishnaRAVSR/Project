@@ -6,6 +6,7 @@ import { Button, Modal, Table } from "react-bootstrap";
 import { Todo } from "../../types";
 import useGetPatchTodo from "../../hooks/getPatchTodo";
 import TodoList from "../commonFormikForm";
+import useGetDeleteTodo from "../../hooks/getDeleteTodo";
 
 const GetTodo = () => {
   const { id } = useParams();
@@ -27,6 +28,14 @@ const GetTodo = () => {
     created_on: new Date().toISOString().slice(0, 10),
   };
 
+  const { mutate: diff, isSuccess } = useGetDeleteTodo();
+  if (isSuccess) {
+    navigate("/");
+  }
+  const deleteTodo = () => {
+    diff(id);
+  };
+
   const onSubmit = (values: Todo) => {
     mutate(values);
     if (isError) {
@@ -40,7 +49,7 @@ const GetTodo = () => {
     <div className="getTodo-container">
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Modify Todo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <TodoList initialValues={initialValues} onSubmit={onSubmit} />
@@ -62,6 +71,7 @@ const GetTodo = () => {
               <th>completed_on</th>
               <th>Created on</th>
               <th>Edit ?</th>
+              <th>Delete Todo</th>
             </tr>
           </thead>
           <tbody>
@@ -76,6 +86,9 @@ const GetTodo = () => {
               <td>
                 <Button onClick={handleShow}>Edit</Button>
               </td>
+              <button>
+                <Button onClick={deleteTodo}>Delete</Button>
+              </button>
             </tr>
           </tbody>
         </Table>
