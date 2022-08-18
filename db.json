@@ -82,7 +82,7 @@
     },
     {
       "id": 34,
-      "completed": false,
+      "completed": true,
       "user_id": 3,
       "description": "Sleep",
       "completed_on": "2022-08-10",

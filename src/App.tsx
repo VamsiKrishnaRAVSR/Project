@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import "./App.css";
 import useGetTodos from "./hooks/getTodos.hooks";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import Todos from "./features/Todos/todos";
 import { Todo } from "./types";
 import Pagination from "./features/pagination/pagination1";
@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 
 function App() {
   const { data: todos, isLoading } = useGetTodos();
+  const [todoItem, setTodoItem] = useState(null);
+  console.log(todoItem);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(10);
   const [checkBox, setCheckBox] = useState({
@@ -26,6 +29,10 @@ function App() {
   const paginate = (number: string | number) => {
     setCurrentPage(parseInt(number as string));
   };
+
+  const getDataById = useMemo(() => {
+    return todos?.find((ele: Todo) => ele.id === todoItem);
+  }, [todoItem]);
 
   const filterBySearchInput = useMemo(
     () =>
@@ -107,7 +114,7 @@ function App() {
       </div>
       {todos && (
         <>
-          <Todos todos={currentTodos} />
+          <Todos todos={currentTodos} setTodoItem={setTodoItem} />
           <Pagination
             itemsPerPage={todosPerPage}
             totalLength={updatedCheckedList?.length}
@@ -116,6 +123,30 @@ function App() {
           />
         </>
       )}
+      <Table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>completed</th>
+            <th>Title</th>
+            <th>description</th>
+            <th>estimated_date</th>
+            <th>completed_on</th>
+            <th>Created on</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{getDataById?.id}</td>
+            <td>{getDataById?.completed ? "Yes" : "No"} </td>
+            <td>{getDataById?.title}</td>
+            <td>{getDataById?.description}</td>
+            <td>{getDataById?.estimated_date}</td>
+            <td>{getDataById?.completed_on}</td>
+            <td>{getDataById?.created_on}</td>
+          </tr>
+        </tbody>
+      </Table>
     </Container>
   );
 }
