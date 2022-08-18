@@ -22,7 +22,7 @@
     },
     {
       "id": 19,
-      "completed": false,
+      "completed": true,
       "user_id": 19,
       "description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
       "completed_on": "2021-10-08",

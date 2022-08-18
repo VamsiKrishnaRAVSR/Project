@@ -8,7 +8,7 @@ const useGetTodo = (id: string) => {
   return useQuery([queryConstants.GET_TODO, id], () => getTodo(id), {
     initialData: () => {
       const p = queryClient
-        .getQueriesData(queryConstants.ALL_TODOS)[0][1]
+        .getQueriesData([queryConstants.ALL_TODOS])[0][1]
         .find((ele: any) => ele.id === parseInt(id));
       console.log(p);
       if (p) {
@@ -17,6 +17,7 @@ const useGetTodo = (id: string) => {
         return undefined;
       }
     },
+    refetchOnMount: false,
   });
 };
 
