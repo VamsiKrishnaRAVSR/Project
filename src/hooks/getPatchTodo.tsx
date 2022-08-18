@@ -14,10 +14,10 @@ const useGetPatchTodo = () => {
     onSuccess: (data, variables: Todo) => {
       queryClient.cancelQueries([queryConstants.GET_TODO]);
       // no need to add variables to dep list coz somethings won't change. Be more specific instead of generic
-      queryClient.setQueriesData(
-        [queryConstants.GET_TODO, String(variables.id)],
-        () => variables
-      );
+      // queryClient.setQueriesData(
+      //   [queryConstants.GET_TODO, String(variables.id)],
+      //   () => variables
+      // );
       queryClient.setQueriesData(
         [queryConstants.ALL_TODOS],
         (oldData: Array<Todo> | undefined) => {

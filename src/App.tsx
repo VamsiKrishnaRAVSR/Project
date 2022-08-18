@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-
 import "./App.css";
 import useGetTodos from "./hooks/getTodos.hooks";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -8,6 +7,7 @@ import Todos from "./features/Todos/todos";
 import { Todo } from "./types";
 import Pagination from "./features/pagination/pagination1";
 import { Link } from "react-router-dom";
+import TodoDetails from "./components/todoDetails/todoDetails";
 
 function App() {
   const { data: todos, isLoading } = useGetTodos();
@@ -30,9 +30,9 @@ function App() {
     setCurrentPage(parseInt(number as string));
   };
 
-  const getDataById = useMemo(() => {
-    return todos?.find((ele: Todo) => ele.id === todoItem);
-  }, [todoItem]);
+  // const getDataById = useMemo(() => {
+  //   return todos?.find((ele: Todo) => ele.id === todoItem);
+  // }, [todoItem]);
 
   const filterBySearchInput = useMemo(
     () =>
@@ -123,30 +123,7 @@ function App() {
           />
         </>
       )}
-      <Table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>completed</th>
-            <th>Title</th>
-            <th>description</th>
-            <th>estimated_date</th>
-            <th>completed_on</th>
-            <th>Created on</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{getDataById?.id}</td>
-            <td>{getDataById?.completed ? "Yes" : "No"} </td>
-            <td>{getDataById?.title}</td>
-            <td>{getDataById?.description}</td>
-            <td>{getDataById?.estimated_date}</td>
-            <td>{getDataById?.completed_on}</td>
-            <td>{getDataById?.created_on}</td>
-          </tr>
-        </tbody>
-      </Table>
+      {todoItem !== null && <TodoDetails todoItem={todoItem} />}
     </Container>
   );
 }
