@@ -12,7 +12,7 @@ const GetTodo = () => {
   const { id } = useParams();
   const { data } = useGetTodo(id as string);
   const navigate = useNavigate();
-  const { mutate, isError, error } = useGetPatchTodo(id as string);
+  const { mutate, isError, error } = useGetPatchTodo();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);

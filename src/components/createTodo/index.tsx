@@ -32,7 +32,6 @@ const CreateTodo = () => {
 
   const onSubmit = (values: Todo) => {
     mutate(values);
-
     isError && !isSuccess
       ? alert("Something went wrong " + error)
       : navigate("/");

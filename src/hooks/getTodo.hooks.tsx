@@ -1,10 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
 import { queryConstants } from "../constants/queryConstants";
 import { getTodo } from "../services/todos.services";
 // import { Todo } from "../types";
 
 const useGetTodo = (id: string) => {
-  return useQuery([queryConstants.GET_TODO, id], () => getTodo(id), {});
+  const queryClient: any = useQueryClient();
+  return useQuery([queryConstants.GET_TODO, id], () => getTodo(id), {
+    initialData: () => {
+      const p = queryClient
+        .getQueriesData(queryConstants.ALL_TODOS)[0][1]
+        .find((ele: any) => ele.id === parseInt(id));
+      console.log(p);
+      if (p) {
+        return p;
+      } else {
+        return undefined;
+      }
+    },
+  });
 };
 
 // const useGetTodo = (props: string) => {
@@ -15,17 +28,17 @@ const useGetTodo = (id: string) => {
 //       console.log(err);
 //     },
 //     enabled: false,
-//     initialData: () => {
-//       const p = queryClient
-//         .getQueriesData(queryConstants.ALL_TODOS)[0][1]
-//         .find((ele: Todo) => ele.id === parseInt(props));
-//       console.log(p);
-//       if (p) {
-//         return p;
-//       } else {
-//         return undefined;
-//       }
-//     },
+// initialData: () => {
+//   const p = queryClient
+//     .getQueriesData(queryConstants.ALL_TODOS)[0][1]
+//     .find((ele: Todo) => ele.id === parseInt(props));
+//   console.log(p);
+//   if (p) {
+//     return p;
+//   } else {
+//     return undefined;
+//   }
+// },
 //   });
 // };
 
