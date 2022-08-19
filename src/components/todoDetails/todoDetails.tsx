@@ -34,4 +34,4 @@ const TodoDetails = (props: { todoItem: Number }) => {
   );
 };
 
-export default TodoDetails;
+export default React.memo(TodoDetails);
