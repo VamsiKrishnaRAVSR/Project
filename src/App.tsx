@@ -1,22 +1,26 @@
 import React, { useMemo, useState } from "react";
-
 import "./App.css";
 import useGetTodos from "./hooks/getTodos.hooks";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import Todos from "./features/Todos/todos";
 import { Todo } from "./types";
 import Pagination from "./features/pagination/pagination1";
 import { Link } from "react-router-dom";
+import TodoDetails from "./components/todoDetails/todoDetails";
 
 function App() {
-  const { data: todos } = useGetTodos();
+  const { data: todos, isLoading } = useGetTodos();
+  const [todoItem, setTodoItem] = useState(null);
+  console.log(todoItem);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(10);
   const [checkBox, setCheckBox] = useState({
     completed: false,
     pending: false,
   });
+
   // const [isCompleted, setIsCompleted] = useState(false);
   // const [isPending, setIsPending] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -25,7 +29,10 @@ function App() {
   const paginate = (number: string | number) => {
     setCurrentPage(parseInt(number as string));
   };
-  console.log(todos);
+
+  // const getDataById = useMemo(() => {
+  //   return todos?.find((ele: Todo) => ele.id === todoItem);
+  // }, [todoItem]);
 
   const filterBySearchInput = useMemo(
     () =>
@@ -47,6 +54,9 @@ function App() {
   }, [checkBox, filterBySearchInput]);
 
   const currentTodos = updatedCheckedList?.slice(firstTodoIndex, lastTodoIndex);
+  if (isLoading) {
+    return <h1>...Loading</h1>;
+  }
   return (
     <Container>
       <div className="topBar">
@@ -104,7 +114,7 @@ function App() {
       </div>
       {todos && (
         <>
-          <Todos todos={currentTodos} />
+          <Todos todos={currentTodos} setTodoItem={setTodoItem} />
           <Pagination
             itemsPerPage={todosPerPage}
             totalLength={updatedCheckedList?.length}
@@ -113,6 +123,7 @@ function App() {
           />
         </>
       )}
+      {todoItem !== null && <TodoDetails todoItem={todoItem} />}
     </Container>
   );
 }

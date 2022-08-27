@@ -3,4 +3,5 @@ export const queryConstants = {
   GET_TODO: "GET_TODO",
   POST_TODO: "POST_TODO",
   PATCH_TODO: "PATCH_TODO",
+  DELETE_TODO: "DELETE_TODO",
 };

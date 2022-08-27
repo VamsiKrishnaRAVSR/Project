@@ -1,10 +1,23 @@
-import { useMutation } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { queryConstants } from "../constants/queryConstants";
+// import { queryConstants } from "../constants/queryConstants";
 import { postTodo } from "../services/todos.services";
 import { Todo } from "../types";
 
 const usePostTodo = () => {
+  const queryClient: QueryClient = useQueryClient();
   return useMutation((formData: Todo) => postTodo(formData), {
     onError: (err) => console.log(err),
+    onSuccess: (data, variables) => {
+      queryClient.setQueriesData([queryConstants.ALL_TODOS], (oldData: any) => {
+        const p = [...oldData, variables];
+        return p;
+      });
+    },
   });
 };
 

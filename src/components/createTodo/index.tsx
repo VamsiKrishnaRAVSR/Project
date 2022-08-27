@@ -14,6 +14,7 @@ const CreateTodo = () => {
   const navigate = useNavigate();
   const { mutate, isError, error, isLoading } = usePostTodo();
 
+
   const initialValues: Todo = useMemo(
     () => ({
       id: Number.isInteger(updatedId) ? Number(updatedId) + 1 : 0,
@@ -31,6 +32,7 @@ const CreateTodo = () => {
   const onSubmit = (values: Todo) => {
     mutate(values);
     isError && isLoading
+
       ? alert("Something went wrong " + error)
       : navigate("/");
   };
