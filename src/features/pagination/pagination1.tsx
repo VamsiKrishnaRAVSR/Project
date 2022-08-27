@@ -42,8 +42,6 @@ const Pagination = (props: PaginationProps) => {
   const [pageNumber, setPageNumber] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-
-
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.match(/^[0-9]*$/i)) {
       setErrorMsg("");

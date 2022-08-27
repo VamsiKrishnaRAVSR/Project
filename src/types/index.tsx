@@ -1,12 +1,12 @@
 export interface Todo {
-  id: number | undefined;
-  completed: boolean | undefined;
-  user_id: number | undefined;
-  description: string | undefined;
-  completed_on: string | undefined;
-  created_on: string | undefined;
-  estimated_date: string | undefined;
-  title: string | undefined;
+  id: number;
+  completed: boolean;
+  user_id: number;
+  description: string;
+  completed_on: string;
+  created_on: string;
+  estimated_date: string;
+  title: string;
 }
 
 export interface TodoList {

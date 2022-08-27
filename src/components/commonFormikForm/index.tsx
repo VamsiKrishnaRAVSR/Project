@@ -1,33 +1,13 @@
-import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useNavigate } from "react-router";
-
 import * as yup from "yup";
-import { Todo } from "../../types";
 import { Button } from "react-bootstrap";
-import useGetTodos from "../../hooks/getTodos.hooks";
-import usePostTodo from "../../hooks/getPostTodo";
+import { Todo } from "../../types";
 
-const TodoList = () => {
-  const { data } = useGetTodos();
-  let updatedId = 0;
-  if (data) {
-    updatedId = data?.length;
-  }
-
-  const navigate = useNavigate();
-  const { mutate, isError, error } = usePostTodo();
-
-  const initialValues: Todo = {
-    id: updatedId + 1,
-    completed: false,
-    user_id: 3,
-    description: "",
-    completed_on: "",
-    estimated_date: "",
-    title: "",
-    created_on: new Date().toISOString().slice(0, 10),
-  };
+const TodoList = (props: {
+  initialValues: Todo;
+  onSubmit: (values: Todo) => void;
+}) => {
+  const { initialValues, onSubmit } = props;
   const validationSchema = yup.object({
     description: yup.string().required(),
     completed: yup.boolean().required(),
@@ -35,11 +15,6 @@ const TodoList = () => {
     estimated_date: yup.date().required(),
     title: yup.string().required(),
   });
-
-  const onSubmit = (values: Todo) => {
-    mutate(values);
-    isError ? alert("Something went wrong " + error) : navigate("/");
-  };
 
   return (
     <Formik

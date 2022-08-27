@@ -12,6 +12,9 @@ const useGetTodos = () /*: { data: Todo[] } */ => {
     onError: (err) => {
       console.log(err);
     },
+    refetchOnMount: false,
+    
+    // initialData: () => queryClient.getQueryData([queryConstants.ALL_TODOS]),
   });
 };
 
