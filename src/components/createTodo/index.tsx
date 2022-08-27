@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import "./index.css";
-
 import TodoList from "../commonFormikForm";
 import usePostTodo from "../../hooks/getPostTodo";
 import { useNavigate } from "react-router";
@@ -9,12 +8,12 @@ import { Todo } from "../../types";
 
 const CreateTodo = () => {
   const { data } = useGetTodos();
-
   // array is undefined and accessing length breaks ui. (JS error breaks ) tsx error doesn't break
   const updatedId = useMemo(() => Number.isInteger(data?.length), [data]);
 
   const navigate = useNavigate();
-  const { mutate, isError, error, isSuccess } = usePostTodo();
+  const { mutate, isError, error, isLoading } = usePostTodo();
+
 
   const initialValues: Todo = useMemo(
     () => ({
@@ -32,7 +31,8 @@ const CreateTodo = () => {
 
   const onSubmit = (values: Todo) => {
     mutate(values);
-    isError && !isSuccess
+    isError && isLoading
+
       ? alert("Something went wrong " + error)
       : navigate("/");
   };
