@@ -6,32 +6,44 @@ import usePostTodo from "../../hooks/getPostTodo";
 import { useNavigate } from "react-router";
 import useGetTodos from "../../hooks/getTodos.hooks";
 import { Todo } from "../../types";
+import moment from "moment";
 
 const CreateTodo = () => {
   const { data } = useGetTodos();
 
   // array is undefined and accessing length breaks ui. (JS error breaks ) tsx error doesn't break
-  const updatedId = useMemo(() => Number.isInteger(data?.length), [data]);
+  // const updatedId = useMemo(() => Number.isInteger(data?.length), [data]);
 
   const navigate = useNavigate();
   const { mutate, isError, error, isSuccess } = usePostTodo();
 
   const initialValues: Todo = useMemo(
     () => ({
-      id: Number.isInteger(updatedId) ? Number(updatedId) + 1 : 0,
+      id: data ? data?.length + 1 : 0,
       completed: false,
       user_id: 3,
       description: "",
       completed_on: "",
       estimated_date: "",
       title: "",
-      created_on: new Date().toISOString().slice(0, 10),
+      timer: "",
     }),
-    [updatedId]
+    [data]
   );
 
   const onSubmit = (values: Todo) => {
-    mutate(values);
+    const value = values;
+    const date = value.estimated_date;
+    const b = moment().valueOf();
+    const time = moment(date).valueOf() - b;
+    const timers = setTimeout(() => alert(value.title), [time]);
+    console.log(values);
+
+    localStorage.setItem(value.id, timers);
+    mutate(value);
+    // setTimeout(() => {
+    //   alert(values.title);
+    // }, []);
     isError && !isSuccess
       ? alert("Something went wrong " + error)
       : navigate("/");

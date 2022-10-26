@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import useGetTodo, { useTodo } from "../../hooks/getTodo.hooks";
+import { useTodo } from "../../hooks/getTodo.hooks";
 
 const TodoDetails = (props: { todoItem: Number }) => {
   const { todoItem } = props;
@@ -11,23 +11,23 @@ const TodoDetails = (props: { todoItem: Number }) => {
       <thead>
         <tr>
           <th>id</th>
-          <th>completed</th>
+          <th>Status</th>
           <th>Title</th>
-          <th>description</th>
+          {getDataById?.description.length !== 0 ? <th>description</th> : null}
           <th>estimated_date</th>
-          <th>completed_on</th>
-          <th>Created on</th>
+          {getDataById?.completed ? <th>completed_on</th> : null}
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>{getDataById?.id}</td>
-          <td>{getDataById?.completed ? "Yes" : "No"} </td>
+          <td>{getDataById?.completed ? "Completed" : "InProgress"} </td>
           <td>{getDataById?.title}</td>
-          <td>{getDataById?.description}</td>
+          {getDataById?.description.length !== 0 ? (
+            <td>{getDataById?.description}</td>
+          ) : null}
           <td>{getDataById?.estimated_date}</td>
-          <td>{getDataById?.completed_on}</td>
-          <td>{getDataById?.created_on}</td>
+          {getDataById?.completed ? <td>{getDataById?.completed_on}</td> : null}
         </tr>
       </tbody>
     </Table>

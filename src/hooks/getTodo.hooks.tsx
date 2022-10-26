@@ -1,6 +1,5 @@
 import {
   QueryClient,
-  QueryKey,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
@@ -8,20 +7,17 @@ import { useMemo } from "react";
 import { queryConstants } from "../constants/queryConstants";
 import { getTodo } from "../services/todos.services";
 import { Todo } from "../types";
+import useGetTodos from "./getTodos.hooks";
 // import { Todo } from "../types";
 // need to use useMutation to get the id properly.
 const useGetTodo = (id: string) => {
-  const queryClient: any = useQueryClient();
+  const queryClient: QueryClient = useQueryClient();
   return useQuery([queryConstants.GET_TODO, id], () => getTodo(id), {
     initialData: () => {
-      console.log("GETTING initial data");
       const p = queryClient
         .getQueriesData([queryConstants.ALL_TODOS])[0][1]
         .find((ele: any) => ele.id === parseInt(id));
-      console.log(p);
       if (p) {
-        console.log("updating initial data");
-
         return p;
       } else {
         return undefined;
@@ -34,18 +30,14 @@ const useGetTodo = (id: string) => {
 };
 
 export const useTodo = (id: string) => {
-  // const { data } = useGetTodos();
-  const queryClient = useQueryClient();
-  const data: Todo[] | undefined = queryClient.getQueryData([
-    queryConstants.ALL_TODOS,
-  ]);
-  console.log("is item called?");
-
+  const { data } = useGetTodos();
+  // const queryClient = useQueryClient();
+  // const data: Todo[] | undefined = queryClient.getQueryData([
+  //   queryConstants.ALL_TODOS,
+  // ]);
   const todo = useMemo(() => {
-    console.log("item fetched");
 
     if (data && id) {
-      console.log("item found");
 
       return data.find((item: Todo) => item.id === parseInt(id));
     } else {

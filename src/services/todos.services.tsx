@@ -28,6 +28,7 @@ export const postTodo = (props: Todo) => {
 
 export const patchTodo = (props: Todo) => {
   const id = String(props.id);
+
   const url = API_ROUTES.PATCH_URL.replace(":id", id);
   return sleep()
     .then(() => axios.patch(url, props))

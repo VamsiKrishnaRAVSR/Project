@@ -16,13 +16,11 @@ const useGetDeleteTodo = () => {
     },
     onSuccess: (data, variables) => {
       queryClient.setQueriesData([queryConstants.ALL_TODOS], (oldData: any) => {
-        console.log(oldData);
         // console.log(typeof variables);
 
         const q = oldData?.filter(
           (ele: Todo) => ele.id !== parseInt(variables)
         );
-        console.log(q);
 
         navigate("/");
         queryClient.cancelQueries([queryConstants.ALL_TODOS], {
