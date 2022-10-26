@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import "./App.css";
 import useGetTodos from "./hooks/getTodos.hooks";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import Todos from "./features/Todos/todos";
 import { Todo } from "./types";
 import Pagination from "./features/pagination/pagination1";
@@ -10,10 +10,8 @@ import { Link } from "react-router-dom";
 import TodoDetails from "./components/todoDetails/todoDetails";
 
 function App() {
-  const { data: todos, isLoading } = useGetTodos();
+  const { data: todos } = useGetTodos();
   const [todoItem, setTodoItem] = useState(null);
-  console.log(todoItem);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(10);
   const [checkBox, setCheckBox] = useState({
@@ -54,9 +52,7 @@ function App() {
   }, [checkBox, filterBySearchInput]);
 
   const currentTodos = updatedCheckedList?.slice(firstTodoIndex, lastTodoIndex);
-  if (isLoading) {
-    return <h1>...Loading</h1>;
-  }
+
   return (
     <Container>
       <div className="topBar">

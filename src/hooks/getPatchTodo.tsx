@@ -1,10 +1,3 @@
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { queryConstants } from "../constants/queryConstants";
-import {  patchTodo } from "../services/todos.services";
-import { Todo } from "../types";
-
-const useGetPatchTodo = () => {
-  const queryClient = useQueryClient();
 import {
   QueryClient,
   useMutation,
@@ -40,7 +33,6 @@ const useGetPatchTodo = () => {
       );
     },
     onError: (err) => console.log(err),
-    onSuccess: () => queryClient.invalidateQueries(queryConstants.GET_TODO),
   });
 };
 
