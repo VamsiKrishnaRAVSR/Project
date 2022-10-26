@@ -25,7 +25,6 @@ const GetTodo = () => {
     completed_on: data?.completed_on,
     estimated_date: data?.estimated_date,
     title: data?.title,
-    created_on: new Date().toISOString().slice(0, 10),
   };
 
   const { mutate: diff } = useGetDeleteTodo();
@@ -35,6 +34,7 @@ const GetTodo = () => {
   };
 
   const onSubmit = (values: Todo) => {
+    console.log(values);
     mutate(values);
     if (isError) {
       alert("Something went wrong " + error);

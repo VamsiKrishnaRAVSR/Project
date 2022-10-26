@@ -4,7 +4,6 @@ export interface Todo {
   user_id: number;
   description: string;
   completed_on: string;
-  created_on: string;
   estimated_date: string;
   title: string;
 }
